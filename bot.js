@@ -21,7 +21,7 @@ function respond() {
 function postMessage() {
   var botResponse, options, body, botReq;
 
-  botResponse = cool();
+  botResponse = "https://docs.google.com/spreadsheets/d/1e0jENW050_hYYYCNjzyY0chYM2V-WIhtEBCGjXMQuUk";
 
   options = {
     hostname: 'api.groupme.com',
