@@ -4,11 +4,16 @@ var botID = process.env.BOT_ID;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^\/doc$/;
+      botDoc = /^\/doc$/,
+      botBoo = /boo ya/;
 
-  if(request.text && botRegex.test(request.text)) {
+  if(request.text && botDoc.test(request.text)) {
     this.res.writeHead(200);
-    postMessage();
+    postMessage(1);
+    this.res.end();
+  } else if(request.text && botBoo.test(request.text)) {
+    this.res.writeHead(200);
+    postMessage(2);
     this.res.end();
   } else {
     console.log("don't care");
@@ -17,10 +22,13 @@ function respond() {
   }
 }
 
-function postMessage() {
+function postMessage(messageNum) {
   var botResponse, options, body, botReq;
-
-  botResponse = "https://docs.google.com/spreadsheets/d/1e0jENW050_hYYYCNjzyY0chYM2V-WIhtEBCGjXMQuUk";
+  if(messageNum == 1) {
+    botResponse = "https://docs.google.com/spreadsheets/d/1e0jENW050_hYYYCNjzyY0chYM2V-WIhtEBCGjXMQuUk";
+  } else if(messageNum == 2) {
+    botResponse = "Now we're talking!";
+  }
 
   options = {
     hostname: 'api.groupme.com',
